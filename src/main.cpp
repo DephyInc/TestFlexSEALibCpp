@@ -29,7 +29,7 @@ void genMasterCommTestPacket(uint8_t arrLen)
 
 int main()
 {
-	cout << "Demo code - C++ project with FlexSEA-Stack & SerialDriver DLL" << endl;
+	cout << "Demo code - C++ project with FlexSEA-Stack DLL" << endl;
 
 	//Prepare FlexSEA stack:
 	initFlexSEAStack(FLEXSEA_PLAN_1, flexsea_send_serial_slave, \
@@ -38,11 +38,12 @@ int main()
 	//Serial driver test:
 	flexsea_serial_open(1,0);
 
+	//Send data for 5s, 100Hz:
 	for(int i = 0; i < 500; i++)
 	{
 		printf("Sending FlexSEA packet #%i...\n", i);
 		genMasterCommTestPacket(10);
-		usleep(10000);
+		Sleep(10);
 	}
 	flexsea_serial_close();
 
