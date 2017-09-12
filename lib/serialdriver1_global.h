@@ -1,7 +1,7 @@
 #ifndef SERIALDRIVER1_GLOBAL_H
 #define SERIALDRIVER1_GLOBAL_H
 
-#include <QtCore/qglobal.h>
+//#include <QtCore/qglobal.h>
 
 #if defined(SERIALDRIVER1_LIBRARY)
 #  define SERIALDRIVER1SHARED_EXPORT Q_DECL_EXPORT

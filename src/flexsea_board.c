@@ -29,6 +29,7 @@ extern "C" {
 #include "flexsea_system.h"
 #include <flexsea_comm.h>
 #include <flexsea_payload.h>
+#include "serial.h"
 
 //****************************************************************************
 // Variable(s)
@@ -80,7 +81,7 @@ PacketWrapper lastDownstreamPacket, lastUpstreamPacket;
 void flexsea_send_serial_slave(PacketWrapper* p)
 {
 	uint8_t port = p->destinationPort;
-	//uint8_t* str = p->packed;
+	uint8_t* str = p->packed;
 	uint16_t length = COMM_STR_BUF_LEN;
 
 	//If it's a valid slave port, send message...
@@ -99,6 +100,10 @@ void flexsea_send_serial_slave(PacketWrapper* p)
 	else if(port == PORT_RS485_2)
 	{
 		//puts_uart_ex(str, length);
+
+		//Test:
+		flexsea_serial_transmit(length, str, 0);
+
 	}
 	else
 	{
