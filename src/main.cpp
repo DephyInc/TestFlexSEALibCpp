@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//Original:
 void genAndSendFlexSEAPacket(uint8_t arrLen)
 {
 	static uint8_t packetIndex = 0;
@@ -20,6 +21,19 @@ void genAndSendFlexSEAPacket(uint8_t arrLen)
 	//Prepare and send command:
 	tx_cmd_tools_comm_test_w(TX_N_DEFAULT, 1, arrLen, packetIndex, 0);
 	pack(P_AND_S_DEFAULT, FLEXSEA_MANAGE_1, NULL, &nb, commStr);
+	flexsea_serial_transmit(nb, commStr, 0);
+}
+
+//Testing the simplified approach:
+void genAndSendFlexSEAPacket_simplified(uint8_t arrLen)
+{
+	static uint8_t packetIndex = 0;
+	packetIndex++;
+	uint16_t nb = 0;
+	uint8_t commStr[100];
+
+	//Prepare and send command:
+	ptx_cmd_tools_comm_test_w(FLEXSEA_MANAGE_1, &nb, commStr, 1, arrLen, packetIndex, 0);
 	flexsea_serial_transmit(nb, commStr, 0);
 }
 
@@ -37,7 +51,8 @@ int main()
 	for(int i = 0; i < 500; i++)
 	{
 		printf("Sending FlexSEA packet #%i...\n", i);
-		genAndSendFlexSEAPacket(10);
+		//genAndSendFlexSEAPacket(10);
+		genAndSendFlexSEAPacket_simplified(10);
 		Sleep(10);
 	}
 
