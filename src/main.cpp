@@ -8,6 +8,8 @@
 #include "flexsea_interface.h"
 #include "serial.h"
 
+#include "flexsea_user_structs.h"
+
 using namespace std;
 
 //Original:
@@ -44,14 +46,19 @@ int main()
 	//Prepare FlexSEA stack:
 	initFlexSEAStack_minimalist(FLEXSEA_PLAN_1);
 
+	//Test: can we R/W to variables?
+	cout << "rigid1.mn.accel.x:" << rigid1.mn.accel.x << endl;
+	rigid1.mn.accel.x = 10;
+	cout << "rigid1.mn.accel.x:" << rigid1.mn.accel.x << endl;
+	//(Yes)
+
 	//Serial driver test:
 	flexsea_serial_open(1,0);
 
-	//Send data for 5s, 100Hz:
-	for(int i = 0; i < 500; i++)
+	//Send data for Xs, 100Hz:
+	for(int i = 0; i < 10; i++)
 	{
 		printf("Sending FlexSEA packet #%i...\n", i);
-		//genAndSendFlexSEAPacket(10);
 		genAndSendFlexSEAPacket_simplified(10);
 		Sleep(10);
 	}

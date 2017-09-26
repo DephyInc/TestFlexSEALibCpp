@@ -112,7 +112,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release.794736087" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.1366504605" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release">
 								<option id="gnu.cpp.link.option.libs.1692720851" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
-									<listOptionValue builtIn="false" value="FlexSEA-Stack-Plan.dll"/>
+									<listOptionValue builtIn="false" value="FlexSEA-Stack-Plan"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.1514750109" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="../lib"/>

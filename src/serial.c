@@ -157,7 +157,7 @@ void flexsea_serial_transmit(char bytes_to_send, unsigned char *serial_tx_data, 
 					   NULL);
 
 	if (Status != TRUE)
-		printf("\n\n   Error %d in Writing to Serial Port", GetLastError());
+		printf("\n\n   Error %d in Writing to Serial Port", (int)GetLastError());
 }
 
 #define TRIES 	8
@@ -196,6 +196,7 @@ int flexsea_serial_read(uint8_t *buffer)
 //	}while(bytesavailable > 0);
 //
 //	return ret; //1 = failed, 0 = read at least one byte
+	return 0;
 }
 
 #ifdef __cplusplus
