@@ -17,7 +17,7 @@
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.debug.1510457484" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.debug.213434754" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.debug"/>
 							<builder buildPath="${workspace_loc:/TestFlexSEALibCpp}/Debug" id="cdt.managedbuild.tool.gnu.builder.mingw.base.543812374" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
-							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1087099816" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
+							<tool command="as" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1087099816" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.505449760" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.912673946" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base"/>
@@ -30,6 +30,11 @@
 									<listOptionValue builtIn="false" value="../lib/flexsea-comm/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-system/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-user/inc"/>
+									<listOptionValue builtIn="false" value="../lib/flexsea-user/ActPack/inc"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.dialect.std.623259113" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.919589464" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="INCLUDE_UPROJ_ACTPACK"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1956718318" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -38,6 +43,7 @@
 								<option id="gnu.c.compiler.mingw.exe.debug.option.debugging.level.395399198" name="Debug Level" superClass="gnu.c.compiler.mingw.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.2122810023" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../lib/flexsea-user/inc"/>
+									<listOptionValue builtIn="false" value="../lib/flexsea-user/ActPack/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-comm/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-system/inc"/>
 									<listOptionValue builtIn="false" value="../lib"/>
@@ -94,6 +100,11 @@
 									<listOptionValue builtIn="false" value="../lib/flexsea-comm/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-system/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-user/inc"/>
+									<listOptionValue builtIn="false" value="../lib/flexsea-user/ActPack/inc"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.dialect.std.375564832" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.833989553" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="INCLUDE_UPROJ_ACTPACK"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2077687909" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -101,9 +112,10 @@
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.mingw.exe.release.option.optimization.level.389951190" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.release.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option id="gnu.c.compiler.mingw.exe.release.option.debugging.level.19756730" name="Debug Level" superClass="gnu.c.compiler.mingw.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.741801183" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="../lib/flexsea-user/inc"/>
+									<listOptionValue builtIn="false" value="../lib/flexsea-user/ActPack/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-comm/inc"/>
 									<listOptionValue builtIn="false" value="../lib/flexsea-system/inc"/>
-									<listOptionValue builtIn="false" value="../lib/flexsea-user/inc"/>
 									<listOptionValue builtIn="false" value="../lib"/>
 									<listOptionValue builtIn="false" value="../inc"/>
 								</option>
