@@ -64,6 +64,7 @@ void user_fsm_2(void);
 #define PROJECT_DPEB			7	//DpEb2.1 and below
 #define PROJECT_DPEB31			8	//DpEb3.1 Exo
 #define PROJECT_BB_RIGID		9	//Barebone Rigid
+#define PROJECT_UMICH_KNEE		10	//University of Michigan's Knee
 
 //List of sub-projects:
 #define SUBPROJECT_NONE			0
@@ -79,8 +80,8 @@ void user_fsm_2(void);
 //Step 1) Select active project (from list):
 //==========================================
 
-#define ACTIVE_PROJECT			PROJECT_DPEB31
-#define ACTIVE_SUBPROJECT		LEFT
+#define ACTIVE_PROJECT			PROJECT_UMICH_KNEE
+#define ACTIVE_SUBPROJECT		NONE
 
 //Step 2) Customize the enabled/disabled sub-modules:
 //===================================================
@@ -267,6 +268,27 @@ void user_fsm_2(void);
 	#define USE_UART3			//Bluetooth
 	//#define USE_SPI_PLAN		//Expansion/Plan
 	#define USE_EEPROM			//Emulated EEPROM, onboard FLASH
+
+	//Runtime finite state machine (FSM):
+	#define RUNTIME_FSM1		ENABLED
+	#define RUNTIME_FSM2		ENABLED
+
+#endif	//PROJECT_BB_RIGID
+
+//University of Michigan's Knee
+#if(ACTIVE_PROJECT == PROJECT_UMICH_KNEE)
+
+	//Enable/Disable sub-modules:
+	#define USE_USB
+	#define USE_COMM			//Requires USE_RS485 and/or USE_USB
+	#define USE_I2C_1			//3V3, IMU & Digital pot
+	#define USE_I2C_2			//3V3, Expansion
+	#define USE_I2C_3			//Onboard, Regulate & Execute
+	#define USE_IMU				//Requires USE_I2C_1
+	#define USE_UART3			//Bluetooth
+	//#define USE_SPI_PLAN		//Expansion/Plan
+	#define USE_EEPROM			//Emulated EEPROM, onboard FLASH
+	#define USE_6CH_AMP			//Requires USE_I2C_1. 6-ch Strain Amp.
 
 	//Runtime finite state machine (FSM):
 	#define RUNTIME_FSM1		ENABLED

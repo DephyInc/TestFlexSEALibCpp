@@ -1,22 +1,24 @@
 /****************************************************************************
 	[Project] FlexSEA: Flexible & Scalable Electronics Architecture
-	[Sub-project] 'plan-gui' Graphical User Interface
+	[Sub-project] 'user/ActPack' Dephy's Actuator Package (ActPack)
 	Copyright (C) 2017 Dephy, Inc. <http://dephy.com/>
 *****************************************************************************
-	[Lead developper] Jean-Francois (JF) Duval, jfduval at dephy dot com.
+	[Lead developper] Jean-Francois Duval, jfduval at dephy dot com.
 	[Origin] Based on Jean-Francois Duval's work at the MIT Media Lab
 	Biomechatronics research group <http://biomech.media.mit.edu/>
 	[Contributors]
 *****************************************************************************
-	[This file] cmd_rigid: Rigid Commands
-*****************************************************************************
+	[This file] cmd-ActPack: Custom commands for the Actuator package
+****************************************************************************
 	[Change log] (Convention: YYYY-MM-DD | author | comment)
-	* 2017-04-18 | jfduval | New code
+	* 2017-09-27 | jfduval | Initial release
 	*
 ****************************************************************************/
 
-#ifndef INC_FLEXSEA_CMD_RIGID_H
-#define INC_FLEXSEA_CMD_RIGID_H
+#ifdef INCLUDE_UPROJ_ACTPACK
+
+#ifndef INC_FLEXSEA_CMD_ACTPACK_H
+#define INC_FLEXSEA_CMD_ACTPACK_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,35 +28,44 @@ extern "C" {
 // Include(s)
 //****************************************************************************
 
-#include <stdint.h>
-#include "flexsea_user_structs.h"
+#include "flexsea_system.h"
 
 //****************************************************************************
-// RX/TX Prototype(s):
+// Prototype(s):
 //****************************************************************************
 
-void rx_cmd_rigid_rw(uint8_t *buf, uint8_t *info);
-void rx_cmd_rigid_rr(uint8_t *buf, uint8_t *info);
+void tx_cmd_actpack_rw(uint8_t *shBuf, uint8_t *cmd, uint8_t *cmdType, \
+						uint16_t *len, uint8_t offset, uint8_t controller, \
+						int32_t setpoint, uint8_t setGains, int16_t g0, int16_t g1,\
+						int16_t g2, int16_t g3, uint8_t system);
+void tx_cmd_actpack_r(uint8_t *shBuf, uint8_t *cmd, uint8_t *cmdType, \
+					uint16_t *len, uint8_t offset);
+void tx_cmd_actpack_w(uint8_t *shBuf, uint8_t *cmd, uint8_t *cmdType, \
+							uint16_t *len, uint8_t offset);
 
-void tx_cmd_rigid_r(uint8_t *shBuf, uint8_t *cmd, uint8_t *cmdType, \
-					uint16_t *len, uint8_t offset);
-void tx_cmd_rigid_w(uint8_t *shBuf, uint8_t *cmd, uint8_t *cmdType, \
-					uint16_t *len, uint8_t offset);
+void rx_cmd_actpack_rw(uint8_t *buf, uint8_t *info);
+void rx_cmd_actpack_rr(uint8_t *buf, uint8_t *info);
 
 //****************************************************************************
 // Prototype(s) - simplified functions (DLL):
 //****************************************************************************
 
-void ptx_cmd_rigid_r(uint8_t slaveId, uint16_t *numb, uint8_t *commStr, \
-							uint8_t offset);
+void ptx_cmd_actpack_rw(uint8_t slaveId, uint16_t *numb, uint8_t *commStr, \
+						uint8_t offset, uint8_t controller, \
+						int32_t setpoint, uint8_t setGains, int16_t g0, int16_t g1,\
+						int16_t g2, int16_t g3, uint8_t system);
 
-uint8_t newRigidRRpacketAvailable(void);
-void getLastRigidData(struct rigid_s *r);
-void init_rigid(void);
+uint8_t newActPackRRpacketAvailable(void);
+//void getLastRigidData(struct rigid_s *r);
+//void init_rigid(void);
 
 //****************************************************************************
 // Definition(s):
 //****************************************************************************
+
+#ifndef NULL
+#define NULL   ((void *) 0)
+#endif
 
 //****************************************************************************
 // Structure(s):
@@ -68,4 +79,5 @@ void init_rigid(void);
 }
 #endif
 
-#endif	//INC_FLEXSEA_CMD_RIGID_H
+#endif	//INC_FLEXSEA_CMD_ACTPACK_H
+#endif //INCLUDE_UPROJ_ACTPACK

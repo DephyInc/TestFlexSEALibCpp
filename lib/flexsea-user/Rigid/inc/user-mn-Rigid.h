@@ -35,7 +35,7 @@
 // Public Function Prototype(s):
 //****************************************************************************
 
-void init_rigid(void);
+//void init_rigid(void);
 void rigid_fsm_1(void);
 void rigid_fsm_2(void);
 
