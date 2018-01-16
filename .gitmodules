@@ -1,0 +1,4 @@
+[submodule "serial"]
+	path = serial
+	url = https://github.com/DephyInc/serial.git
+	branch = master
