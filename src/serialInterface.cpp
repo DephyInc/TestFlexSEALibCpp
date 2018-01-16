@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "serial.h"
+#include "flexsea_interface.h"
 
 using namespace std;
 
@@ -54,13 +55,13 @@ void flexsea_serial_transmit(char bytes_to_send, unsigned char *serial_tx_data, 
 	my_serial.write(serial_tx_data, bytes_to_send);
 }
 
-int flexsea_serial_read(uint8_t *buffer)
+int flexsea_serial_read(uint8_t *buffer, unsigned char verbal)
 {
 	uint8_t receivedData[100];
 	int cnt = my_serial.available();
 	my_serial.read(receivedData, cnt);
-	cout << "Received " << cnt << " bytes: "<< receivedData << "." << endl;
-//
+	if(verbal){cout << "Received " << cnt << " bytes." << endl;}
+	receiveFlexSEABytes(receivedData, cnt, 1);
 	return 0;
 }
 

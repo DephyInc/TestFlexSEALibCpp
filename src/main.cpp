@@ -6,9 +6,9 @@
 #include "flexsea_config.h"
 #include "flexsea_interface.h"
 #include "cmd-ActPack.h"
+#include "cmd-Rigid.h"
 #include "flexsea_user_structs.h"
 #include <serialInterface.h>
-
 
 using namespace std;
 
@@ -46,11 +46,13 @@ int main()
 	//Send data for Xs, 100Hz:
 	for(int i = 0; i < 10; i++)
 	{
-		printf("Sending FlexSEA packet #%i...\n", i);
+		//printf("Sending FlexSEA packet #%i...\n", i);
 		requestReadActPack(0);
 		Sleep(10);
-		flexsea_serial_read(test);
+		flexsea_serial_read(test, 0);
 		Sleep(10);
+
+		cout << rigid1.mn.accel.x << endl;
 	}
 
 	flexsea_serial_close();
