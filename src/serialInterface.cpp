@@ -55,13 +55,13 @@ void flexsea_serial_transmit(char bytes_to_send, unsigned char *serial_tx_data, 
 	my_serial.write(serial_tx_data, bytes_to_send);
 }
 
-int flexsea_serial_read(uint8_t *buffer, unsigned char verbal)
+int flexsea_serial_read(uint8_t *buffer, unsigned char verbal, uint8_t *pp)
 {
 	uint8_t receivedData[100];
 	int cnt = my_serial.available();
 	my_serial.read(receivedData, cnt);
 	if(verbal){cout << "Received " << cnt << " bytes." << endl;}
-	receiveFlexSEABytes(receivedData, cnt, 1);
+	(*pp) = receiveFlexSEABytes(receivedData, cnt, 1);
 	return 0;
 }
 
