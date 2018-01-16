@@ -1,13 +1,9 @@
 //****************************************************************************
-//Simple C serial port driver
+//Simple interface for wjwwood/serial/
 //****************************************************************************
 
 #ifndef INC_SIMPLE_SERIAL_H
 #define INC_SIMPLE_SERIAL_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 //****************************************************************************
 // Include(s)
@@ -24,14 +20,12 @@ void flexsea_serial_close(void);
 void flexsea_serial_transmit(char bytes_to_send, unsigned char *serial_tx_data, unsigned char verbal);
 void flexsea_serial_putc(char *bytes_to_write);
 int flexsea_serial_read(uint8_t *buffer);
+void enumerate_ports(void);
+int isPortOpen(void);
 
 //****************************************************************************
 // Definition(s):
 //****************************************************************************
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
 
