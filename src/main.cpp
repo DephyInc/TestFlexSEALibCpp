@@ -14,7 +14,7 @@ using namespace std;
 
 uint8_t packetIndex = 0;
 uint16_t nb = 0;
-uint8_t commStr[100];
+uint8_t commStr[100], test[100];
 
 //ActPack variables:
 uint8_t controller = CTRL_NONE;
@@ -48,6 +48,8 @@ int main()
 	{
 		printf("Sending FlexSEA packet #%i...\n", i);
 		requestReadActPack(0);
+		Sleep(10);
+		flexsea_serial_read(test);
 		Sleep(10);
 	}
 

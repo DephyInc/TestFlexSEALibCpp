@@ -56,7 +56,10 @@ void flexsea_serial_transmit(char bytes_to_send, unsigned char *serial_tx_data, 
 
 int flexsea_serial_read(uint8_t *buffer)
 {
-
+	uint8_t receivedData[100];
+	int cnt = my_serial.available();
+	my_serial.read(receivedData, cnt);
+	cout << "Received " << cnt << " bytes: "<< receivedData << "." << endl;
 //
 	return 0;
 }
