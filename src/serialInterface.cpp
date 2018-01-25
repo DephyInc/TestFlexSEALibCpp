@@ -21,7 +21,7 @@ using namespace std;
 //****************************************************************************
 
 serial::Serial my_serial;
-string portUsed = "COM5";
+string portUsed = "COM3";
 
 //****************************************************************************
 // External variable(s)

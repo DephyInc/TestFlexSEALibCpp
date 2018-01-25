@@ -43,6 +43,38 @@ uint8_t syst = 0;
 // Public Function(s)
 //****************************************************************************
 
+void setControlMode(uint8_t ctrlMode)
+{
+	controller = ctrlMode;
+}
+
+void setMotorPosition(uint32_t motorPosition)
+{
+	setControlMode(CTRL_POSITION);
+	setpoint = motorPosition;
+}
+
+void setMotorCurrent(uint32_t motorCurrent){
+	setControlMode(CTRL_CURRENT);
+	setpoint = motorCurrent;
+}
+
+void setMotorVoltage(uint32_t motorVoltage)
+{
+	setControlMode(CTRL_IMPEDANCE);
+	setpoint = motorVoltage;
+}
+
+void setZGains(int z_k, int z_b, int i_kp, int i_ki)
+{
+    g0 = z_k;
+    g1 = z_b;
+    g2 = i_kp;
+    g3 = i_ki;
+    setGains = CHANGE;
+}
+
+
 void requestReadActPack(uint8_t offset)
 {
 	ptx_cmd_actpack_rw(FLEXSEA_MANAGE_1, &nb, commStr, offset, controller, setpoint, setGains, g0, g1, g2, g3, syst);
@@ -100,3 +132,5 @@ uint8_t offs(uint8_t min, uint8_t max)
 	if(riOffs > max){riOffs = min;}
 	return riOffs;
 }
+
+

@@ -17,6 +17,10 @@ using namespace std;
 
 uint8_t activeDemo = 0;
 
+// prototypes
+void openSpeedDemo(void);
+void holdPositionDemo(void);
+
 void printMenu(void)
 {
 	cout << "What demo would you like to try?" << endl << endl;
@@ -79,7 +83,12 @@ int main()
 				readActPack(0,0,10);
 				break;
 			case 2:
-				cout << "Not programmed!" << endl;
+				openSpeedDemo();
+				readActPack(0,0,10);
+				break;
+			case 3:
+				holdPositionDemo();
+				readActPack(0,0,10);
 				break;
 			default:
 				cout << "Not programmed!" << endl;
@@ -93,4 +102,102 @@ int main()
 	flexsea_serial_close();
 
 	return 0;
+}
+
+// open speed demo
+void openSpeedDemo()
+{
+	static int state = 0; // motor states: initialize, stop, speed up, constant speed, slow down 
+	static int stateTimeCounter = 0; // 
+	static int stateTime = 200; // max time in miliseconds to spend in each state
+	static int gain = 15; // motor voltage gain
+	static int deadBand = 350; // motor voltage deadband in miliVolts. Motor won't turn below this
+
+	stateTimeCounter++;
+	switch(state) 
+	{
+		case 0: // state 0: initialize everything
+			cout<< "setting controller to Open ...\n";
+			setControlMode(CTRL_OPEN);
+			setMotorVoltage(0);
+
+			state = 1; // move to hold state
+			break;
+		
+		case 1: // state 1: hold position
+			// set motor voltage to zero. No motion
+			setMotorVoltage(0);
+
+			if (stateTimeCounter > stateTime)
+			{
+				state = 2; // move to ramp up state
+				stateTimeCounter = 0; // reset state time counter
+			}
+			break;
+		
+		case 2: // state 2: ramp up motor velocity
+			// gradually increase motor voltage linearly based on gain and time spent in this state
+			setMotorVoltage(deadBand + gain*stateTimeCounter);
+			
+			if (stateTimeCounter > stateTime){
+				state = 3; // move to constant velocity state
+				stateTimeCounter = 0;
+			}
+			break;
+
+		case 3: // state 3: constant velocity
+			// hold motor voltage at constant, which matches the voltage ramped up to in state 2 
+			setMotorVoltage(deadBand + gain*stateTime);
+
+			if (stateTimeCounter > stateTime)
+			{
+				state = 4; // move to ramp down state
+				stateTimeCounter = 0;
+			}
+			break;
+
+		case 4: // state 4: ramp down motor velocity	
+			// gradually decrease motor voltage linearly based on gain and time spent in this state
+			setMotorVoltage(deadBand + gain*stateTime - gain*stateTimeCounter);
+
+			if (stateTimeCounter > stateTime)
+			{
+				state = 1; // move to hold state 
+				stateTimeCounter = 0;
+			}
+			break;
+
+		default: // error state should never get here
+			//	shut things down as a precaution
+			setMotorVoltage(0);
+			cout<<"error invald state\n";
+	}
+
+}
+
+// hold starting postion demo
+void holdPositionDemo()
+{
+	static int initialized = 0;
+	static uint32_t startingPosition;
+	// current gains
+	int I_KP = 100;
+	int I_KI = 1;
+
+	// position controller gains
+	int pos_KP = 20;
+	int pos_KI = 6;
+
+
+	if (!initialized)
+	{
+		cout << "Setting controller to Open...\n";
+		setControlMode(CTRL_POSITION);
+		setZGains(pos_KP, pos_KI, I_KP, I_KI);
+		startingPosition = rigid1.ex.enc_ang[0];
+		initialized = 1;
+	}
+
+	setMotorPosition(startingPosition);
+
 }
