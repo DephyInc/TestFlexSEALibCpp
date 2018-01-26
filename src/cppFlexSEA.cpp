@@ -61,7 +61,7 @@ void setMotorCurrent(uint32_t motorCurrent){
 
 void setMotorVoltage(uint32_t motorVoltage)
 {
-	setControlMode(CTRL_IMPEDANCE);
+	setControlMode(CTRL_OPEN);
 	setpoint = motorVoltage;
 }
 
@@ -73,7 +73,6 @@ void setZGains(int z_k, int z_b, int i_kp, int i_ki)
     g3 = i_ki;
     setGains = CHANGE;
 }
-
 
 void requestReadActPack(uint8_t offset)
 {
@@ -132,5 +131,3 @@ uint8_t offs(uint8_t min, uint8_t max)
 	if(riOffs > max){riOffs = min;}
 	return riOffs;
 }
-
-
